@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Export LocalStorage Resumes</title>
+</head>
+<body>
+    <h1>Export LocalStorage Resumes</h1>
+    <button onclick="exportResumes()">Export Resumes</button>
+    <pre id="output"></pre>
+    
+    <script>
+        function exportResumes() {
+            const data = localStorage.getItem('resumeLocalVersions');
+            if (data) {
+                document.getElementById('output').textContent = data;
+                console.log('Resumes exported. Copy the text above.');
+            } else {
+                document.getElementById('output').textContent = 'No resumes found in localStorage.';
+            }
+        }
+    </script>
+</body>
+</html>

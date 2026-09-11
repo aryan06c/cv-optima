@@ -1,0 +1,226 @@
+/* ============================================================
+   Resume styles — exact replica of the LaTeX template
+   ============================================================ */
+
+/* ===== Colors from LaTeX =====
+   light-grey gray 0.83 -> #d4d4d4
+   dark-grey  gray 0.3  -> #4d4d4d
+   text-grey  gray 0.08 -> #141414 */
+:root {
+  --light-grey: #d4d4d4;
+  --dark-grey: #4d4d4d;
+  --text-grey: #141414;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #525659;
+}
+
+body {
+  /* tgheros = TeX Gyre Heros = Helvetica clone */
+  font-family: "Helvetica Neue", Helvetica, Arial, "TeX Gyre Heros", sans-serif;
+  font-size: 11pt; /* 11pt article class */
+  color: var(--text-grey);
+  line-height: 1.2;
+}
+
+/* ===== Letter paper: 8.5in x 11in, 0.5in margins ===== */
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 20px auto;
+  background: #ffffff;
+  padding: 0.5in;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Heading ===== */
+.heading {
+  text-align: center;
+}
+.heading h1 {
+  font-size: 24.88pt; /* \Huge at 11pt */
+  font-weight: bold;
+  margin-bottom: 5pt;
+}
+.contact {
+  font-family: "Fira Mono", monospace; /* \texttt with FiraMono */
+  font-size: 8.1pt; /* \small (9pt) x 0.90 scale */
+  color: var(--text-grey);
+}
+.contact .fas,
+.contact .fab {
+  font-size: 9pt;
+}
+.contact a {
+  color: inherit;
+  text-decoration: none; /* hidelinks */
+}
+.contact .sep {
+  padding: 0 4pt;
+}
+
+/* ===== Section titles ===== */
+.section {
+  margin-top: 12pt;
+}
+.section h2 {
+  font-size: 14.4pt; /* \large */
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 3pt;
+  border-bottom: 2pt solid var(--light-grey); /* \titlerule[2pt] */
+  margin-bottom: 6pt;
+}
+
+/* ===== Resume entries ===== */
+.entry {
+  margin-top: 7pt;
+}
+.entry:first-of-type {
+  margin-top: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+.row .left {
+  text-align: left;
+}
+.row .right {
+  text-align: right;
+  color: var(--dark-grey);
+  font-size: 10pt; /* \small */
+  white-space: nowrap;
+}
+.row .title-bold {
+  font-weight: bold;
+  font-size: 11pt;
+}
+.row .title-italic {
+  font-style: italic;
+  font-size: 11pt;
+}
+.row.first {
+  margin-bottom: 1pt;
+}
+
+/* ===== Bullet lists ===== */
+ul.items {
+  list-style: none;
+  margin-top: 3pt;
+  padding-left: 0.28in; /* itemize indent */
+}
+ul.items li {
+  font-size: 10pt; /* \small */
+  position: relative;
+  padding-left: 0.16in;
+  margin-bottom: 2pt;
+  text-align: left;
+}
+ul.items li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  font-size: 10pt;
+}
+
+/* myuline underlined links */
+a.uline {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2.2pt;
+  text-decoration-thickness: 0.5pt;
+}
+
+/* ===== Skills ===== */
+.skills {
+  font-size: 10pt; /* \small */
+}
+.skills p {
+  margin-bottom: 4pt;
+  text-align: left;
+}
+
+/* ===== Download button ===== */
+.download-bar {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.download-bar button {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 18px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.download-bar button:hover {
+  background: #1558b0;
+}
+.download-bar button.btn-delete {
+  background: #dc3545;
+}
+.download-bar button.btn-new {
+  background: #28a745;
+}
+.download-bar select {
+  padding: 9px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  font-family: inherit;
+  font-weight: bold;
+}
+
+/* ===== Print (Save as PDF) — SINGLE PAGE ===== */
+@page {
+  size: letter;
+  margin: 0;
+}
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+  .page {
+    width: 8.5in;
+    height: 11in; /* hard single-page height */
+    margin: 0;
+    box-shadow: none;
+    overflow: hidden; /* never spill to page 2 */
+  }
+  .page-inner {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .section,
+  .entry {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .download-bar {
+    display: none;
+  }
+  a {
+    color: inherit;
+  }
+}
